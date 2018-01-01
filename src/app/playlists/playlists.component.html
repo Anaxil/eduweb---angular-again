@@ -1,9 +1,3 @@
-<style>
-    .playlist-row {
-      border-bottom: 2px solid transparent;
-    }
-  </style>
-
   <div class="row mt-1">
     <div class="col">
       <app-playlists-list (selected)="select($event)" [selected]="selected" [playlists]="playlists"></app-playlists-list>
@@ -19,7 +13,7 @@
 
         <app-playlist-detail (edited)="edit($event)" [playlist]="selected" *ngSwitchCase="'selected'"></app-playlist-detail>
 
-        <app-playlist-form [playlist]="selected" *ngSwitchCase="'edit'"></app-playlist-form>
+        <app-playlist-form [playlist]="edited" (saved)="save($event)" *ngSwitchCase="'edit'"></app-playlist-form>
 
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlaylistsService } from './playlists.service';
 
 @Component({
   selector: 'app-playlists',
@@ -7,53 +8,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistsComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   selected = null;
   edited = {};
   playlist = {};
-  mode = "none";
+  mode = 'none';
 
-  playlists = [
-    {
-      name: 'The best of TFC!',
-      tracks: 23,
-      color: '#ff0000',
-      favourite: true
-    },
-    {
-      name: 'The best of TFC2!',
-      tracks: 2,
-      color: '#0000ff',
-      favourite: false
-    },
-  ];
+  playlists = [];
+
+  constructor(private playlistsSerive: PlaylistsService) {}
+
+  ngOnInit() {
+    this.playlists = this.playlistsSerive.getPlaylists();
+  }
 
   createNew() {
-    this.mode = "edit";
-    let newPlaylist = {};
+    this.mode = 'edit';
+    const newPlaylist = this.playlistsSerive.createPlaylist();
     this.selected = newPlaylist;
     this.edited = newPlaylist;
   }
 
   select(playlist) {
     if (playlist !== this.selected) {
-      this.mode = "selected"
+      this.mode = 'selected'
       this.selected = playlist;
     }
   }
 
   edit(playlist) {
-    this.mode = "edit";
-    this.edited = playlist;
+    this.mode = 'edit';
+    this.edited = Object.assign({}, playlist);
     this.selected = playlist;
   }
 
-  save(event) {
-    console.log(event);
+  save(playlist) {
+    this.playlistsSerive.savePlaylist(playlist);
+    console.log('saved:', event);
   }
 
 }

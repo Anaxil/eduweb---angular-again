@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-playlist-form',
@@ -26,7 +26,7 @@ import { Component, OnInit, Input } from '@angular/core';
         <input type="checkbox" [(ngModel)]="playlist.favourite">Ulubiona:</label>
     </div>
     <div class="form-group">
-      <button class="btn btn-success" (click)="save($event)">Zapisz</button>
+      <button class="btn btn-success" (click)="save(playlist)">Zapisz</button>
     </div>
   </div>
 </div>
@@ -37,6 +37,13 @@ export class PlaylistFormComponent implements OnInit {
 
   @Input()
   playlist;
+
+  @Output()
+  saved = new EventEmitter;
+
+  save(playlist) {
+    this.saved.emit(playlist);
+  }
 
   constructor() { }
 

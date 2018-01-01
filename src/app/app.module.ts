@@ -3,19 +3,31 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PlaylistsComponent } from './playlists/playlists.component';
+import { PlaylistsModule } from './playlists/playlists.module';
+
+import { AuthService } from './auth.service';
+import { HttpModule } from '@angular/http';
+import { MusicSearchModule } from './music-search/music-search.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PlaylistsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    PlaylistsModule,
+    HttpModule,
+    MusicSearchModule
   ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private authService: AuthService) {
+    authService.getToken();
+  }
+
+}
