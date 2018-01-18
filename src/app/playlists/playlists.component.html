@@ -1,20 +1,26 @@
-  <div class="row mt-1">
-    <div class="col">
-      <app-playlists-list (selected)="select($event)" [selected]="selected" [playlists]="playlists"></app-playlists-list>
-      <div>
-        <button class="btn btn-success float-right" (click)="createNew($event)">Nowa playlista</button>
-      </div>
-    </div>
+<div class="row my-3">
+  <div class="col">
+    <h4 class="display-4 float-right mb-2">Twoje playlisty</h4>
+  </div>
+</div>
 
-    <div class="col">
 
-      <div [ngSwitch]="mode">
-        <app-content-card title="Playlista" content="Wybierz Playlistę!" *ngSwitchDefault></app-content-card>
+<div class="row mt-1">
+  <div class="col">
 
-        <app-playlist-detail (edited)="edit($event)" [playlist]="selected" *ngSwitchCase="'selected'"></app-playlist-detail>
+    <div [ngSwitch]="mode">
+      <app-content-card title="Playlista" content="Wybierz Playlistę!" *ngSwitchDefault></app-content-card>
 
-        <app-playlist-form [playlist]="edited" (saved)="save($event)" *ngSwitchCase="'edit'"></app-playlist-form>
+      <app-playlist-detail (edited)="edit($event)" [playlist]="selected" *ngSwitchCase="'selected'"></app-playlist-detail>
 
-      </div>
+      <app-playlist-form [playlist]="edited" (saved)="save($event)" *ngSwitchCase="'edit'"></app-playlist-form>
+
     </div>
   </div>
+  <div class="col">
+    <app-playlists-list (selected)="select($event)" [selected]="selected" [playlists]="playlists"></app-playlists-list>
+    <div>
+      <button class="btn btn-success float-right" (click)="createNew($event)">Nowa playlista</button>
+    </div>
+  </div>
+</div>

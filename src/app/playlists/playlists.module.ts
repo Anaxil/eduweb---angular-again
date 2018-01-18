@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { PlaylistsService } from './playlists.service';
 
 import PlaylistsData from './playlists.data';
+import { routerModule } from './playlists.routing';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    routerModule
   ],
   declarations: [
     PlaylistsComponent,

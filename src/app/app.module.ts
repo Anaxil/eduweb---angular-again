@@ -8,18 +8,21 @@ import { PlaylistsModule } from './playlists/playlists.module';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
 import { MusicSearchModule } from './music-search/music-search.module';
-
+import { routerModule } from './app.routing';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     PlaylistsModule,
     HttpModule,
-    MusicSearchModule
+    MusicSearchModule,
+    routerModule
   ],
   providers: [ AuthService ],
   bootstrap: [AppComponent]
