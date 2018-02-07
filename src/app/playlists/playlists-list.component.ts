@@ -1,5 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+//podmiana clicka - zdarzenia na routerLink
+// <tr *ngFor="let playlist of playlists; let i = index"
+// class="playlist-row" [ngClass]="{'table-active': selected == playlist}" [ngStyle]="{borderBottomColor: playlist.color}"
+// (click)="select(playlist)">
+
 @Component({
   selector: 'app-playlists-list',
   template: `
@@ -15,7 +20,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <tbody>
     <tr *ngFor="let playlist of playlists; let i = index"
       class="playlist-row" [ngClass]="{'table-active': selected == playlist}" [ngStyle]="{borderBottomColor: playlist.color}"
-      (click)="select(playlist)">
+      [routerLink]="[playlist.id]">
       <td>{{i + 1}}.</td>
       <td>{{playlist.name}}</td>
       <td>{{playlist.tracks}}</td>

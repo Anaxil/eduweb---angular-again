@@ -1,4 +1,3 @@
-import { PlaylistsComponent } from './playlists/playlists.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routesConfig: Routes = [

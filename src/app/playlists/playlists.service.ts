@@ -3,7 +3,22 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PlaylistsService {
 
-  playlists = [];
+  playlists = [
+    {
+      id: 1,
+      name: 'Domek1',
+      tracks: 23,
+      color: '#ffff00',
+      favourite: true
+    },
+    {
+      id: 2,
+      name: 'Grzesiek the Best',
+      tracks: 2,
+      color: '#ff00ff',
+      favourite: false
+    },
+  ];
 
   savePlaylist(playlist) {
     if (playlist.id) {
@@ -21,6 +36,10 @@ export class PlaylistsService {
 
   getPlaylists() {
     return this.playlists;
+  }
+
+  getPlaylist(id) {
+    return this.playlists.find(playlist => playlist.id === id);
   }
 
   createPlaylist() {

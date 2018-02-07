@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlaylistsService } from './playlists.service';
 
 @Component({
   selector: 'app-playlist-form',
   template: `
-  <div class="card p-3">
+  <div class="card p-3" *ngIf="playlist">
   <div class="card-block">
     <div class="card-block">
       <h4 class="card-title">Playlista</h4>
@@ -35,19 +37,35 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PlaylistFormComponent implements OnInit {
 
-  @Input()
+  // @Input()
   playlist;
 
-  @Output()
-  saved = new EventEmitter;
+  // prz wdrożęniu usługi emiter nie jest już potrzebny
+  // @Output()
+  // saved = new EventEmitter;
 
   save(playlist) {
-    this.saved.emit(playlist);
+    // prz wdrożęniu usługi emiter nie jest już potrzebny
+    // this.saved.emit(playlist);
+
+    this.playlistsService.savePlaylist(playlist);
+    this.router.navigate(['playlist', playlist.id]);
   }
 
-  constructor() { }
+  constructor(private activeRoute: ActivatedRoute,
+              private playlistsService: PlaylistsService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.activeRoute.params.subscribe(param => {
+      const id = parseInt(this.activeRoute.snapshot.paramMap.get('id'));
+      if (id) {
+        this.playlist = Object.assign({},this.playlistsService.getPlaylist(id));
+      } else {
+        this.playlist = this.playlistsService.createPlaylist();
+        console.log(param);
+      }
+    });
   }
 
 }

@@ -5,10 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
   template: `
   <div class="card p-3">
   <div class="card-block">
-    <div class="card-block">
       <h4 class="card-title">{{title}}</h4>
       <p class="card-text">{{text}}</p>
-    </div>
   </div>
 </div>
   `,

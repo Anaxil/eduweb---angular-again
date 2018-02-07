@@ -13,13 +13,19 @@ export class MusicSearchService {
   albums = [];
   albumsStream = new Subject();
 
-  constructor(private http: Http) { 
+  constructor(private http: Http) {
     this.search('Batman');
   }
 
   getAlbums(callback) {
     // return this.albums;
     this.search('Metallica');
+  }
+
+  getAlbum(id) {
+    const url = `https://api.spotify.com/v1/albums/${id}`;
+    return this.http.get(url)
+    .map( (response: Response) => response.json());
   }
 
   search(query) {

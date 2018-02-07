@@ -17,7 +17,7 @@ export class AppComponent {
       //   'Authorization': 'Bearer ' + authSerive.getToken()
       // })
     }).subscribe(response => {
-      console.log(response.json());
+      //console.log(response.json());
     });
   }
 }

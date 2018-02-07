@@ -4,23 +4,32 @@
   </div>
 </div>
 
-
 <div class="row mt-1">
+
+  <!-- poz zastosowaniu zagnieżdzonego routingu -->
   <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+
+  <!-- przed zastosowaniem zagnieżdzonego routingu -->
+  <!-- <div class="col">
 
     <div [ngSwitch]="mode">
       <app-content-card title="Playlista" content="Wybierz Playlistę!" *ngSwitchDefault></app-content-card>
 
       <app-playlist-detail (edited)="edit($event)" [playlist]="selected" *ngSwitchCase="'selected'"></app-playlist-detail>
-
+      
       <app-playlist-form [playlist]="edited" (saved)="save($event)" *ngSwitchCase="'edit'"></app-playlist-form>
 
     </div>
-  </div>
+  </div> -->
+
   <div class="col">
-    <app-playlists-list (selected)="select($event)" [selected]="selected" [playlists]="playlists"></app-playlists-list>
+    <app-playlists-list [selected]="selected" [playlists]="playlists"></app-playlists-list>
     <div>
-      <button class="btn btn-success float-right" (click)="createNew($event)">Nowa playlista</button>
+      <!-- <button class="btn btn-success float-right" (click)="createNew($event)">Nowa playlista</button> -->
+      <!-- po zastosowaniu routingu -->
+      <button class="btn btn-success float-right" [routerLink]="['new']">Nowa playlista</button>
     </div>
   </div>
 </div>
